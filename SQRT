@@ -1,0 +1,37 @@
+public class R192211219 {
+    public static void main(String[] args) {
+        int x = 8;
+        int sqrt = sqrtRounded(x);
+        System.out.println("The square root of " + x + " rounded to the nearest integer is " + sqrt);
+    }
+
+    public static int sqrtRounded(int x) {
+        if (x < 0) {
+            throw new ArithmeticException("Square root of negative number");
+        }
+
+        if (x == 0 || x == 1) {
+            return x;
+        }
+
+        int start = 1;
+        int end = x;
+        int result = 0;
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            long square = (long) mid * mid;
+
+            if (square == x) {
+                return mid;
+            } else if (square < x) {
+                start = mid + 1;
+                result = mid;
+            } else {
+                end = mid - 1;
+            }
+        }
+
+        return result;
+    }
+}
